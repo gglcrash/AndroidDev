@@ -11,33 +11,99 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginBottom="@dimen/spacing_small_8">
 
         <ImageView
-            android:layout_width="@dimen/size_small_24"
-            android:layout_height="@dimen/size_small_24"
-            android:layout_weight="0"
-            android:src="@drawable/ic_call_24dp"
-            android:layout_marginTop="@dimen/size_small_24"
-            android:layout_marginLeft="@dimen/size_small_24"/>
+            style="@style/icon.left"
+            android:src="@drawable/ic_call_24dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="110dp"
+            android:layout_height="@dimen/size_large_72"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="@color/color_primary"
+            android:gravity="center_vertical"
             android:layout_marginLeft="@dimen/spacing_medium_32"
-            android:layout_marginRight="@dimen/spacing_normal_16"
-           ></LinearLayout>
+            android:layout_marginRight="@dimen/spacing_normal_16">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    android:id="@+id/mobile_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Мобильный телефон"
+                    android:inputType="phone"
+                    android:text="89191894428"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    android:focusable="false"
+                    />
+            </android.support.design.widget.TextInputLayout>>
+           </LinearLayout>
 
         <ImageView
-            android:layout_width="@dimen/size_small_24"
-            android:layout_height="@dimen/size_small_24"
-            android:layout_weight="0"
-            android:src="@drawable/ic_phone_in_talk_24dp"
-            android:layout_marginTop="@dimen/size_small_24"
-            android:layout_marginRight="@dimen/spacing_medium_32"/>
+            style="@style/icon.right"
+            android:src="@drawable/ic_phone_in_talk_24dp"/>
 
     </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@color/grey"
+    android:layout_marginLeft="@dimen/size_large_72"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginBottom="@dimen/spacing_small_8">
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_email_24dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_large_72"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/spacing_medium_32"
+            android:layout_marginRight="@dimen/spacing_normal_16">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    android:id="@+id/email_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Почта"
+                    android:inputType="textEmailAddress"
+                    android:text="ggl.crash@gmail.com"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    android:focusable="false"
+                    />
+            </android.support.design.widget.TextInputLayout>>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/icon.right"
+            android:src="@drawable/ic_send_24dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey"
+        android:layout_marginLeft="@dimen/size_large_72"/>
+
 </LinearLayout>
