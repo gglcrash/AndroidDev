@@ -15,10 +15,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG= ConstantManager.TAG_PREFIX+"MainActivity";
 
-    protected EditText mEditText;
-    protected Button mRedButton, mGreenButton;
-    protected String mColorMode;
-
     /**
      * вызывается при создании активити (изменения конфигурации либо возврата к ней после
      * уничтожения.
@@ -36,17 +32,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
 
-        mRedButton = (Button) findViewById(R.id.red_btn);
-        mGreenButton = (Button) findViewById(R.id.green_btn);
-        mEditText = (EditText) findViewById(R.id.textView);
 
-        mRedButton.setOnClickListener(this);
-        mGreenButton.setOnClickListener(this);
 
         if(savedInstanceState == null){
             //первый запуск активити
         } else {
             //активити создается не впервые
+
         }
     }
 
@@ -121,14 +113,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.green_btn:
-                mEditText.setBackgroundColor(Color.GREEN);
-                break;
-            case R.id.red_btn:
-                mEditText.setBackgroundColor(Color.RED);
-                break;
 
-        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Log.d(TAG, "onSaveInstanceState");
     }
 }
