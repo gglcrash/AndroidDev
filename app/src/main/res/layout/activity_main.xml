@@ -8,40 +8,94 @@
     tools:context=".ui.activities.MainActivity"
     android:orientation="vertical">
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/spacing_small_8"
-        android:layout_marginBottom="@dimen/spacing_small_8">
+        android:layout_height="@dimen/spacing_medial_24"
+        android:background="@color/grey"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:background="@color/grey">
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_weight="1">
+           <EditText
+               style="@style/text.value"
+               android:text="5"
+               />
+           <EditText
+               style="@style/text.name"
+               android:text="Рейтинг"
+               />
+       </LinearLayout>
+       <View
+           android:layout_width="1dp"
+           android:layout_height="match_parent"
+           android:background="@color/white"/>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_weight="3">
+           <EditText
+               style="@style/text.value"
+               android:text="25000"
+               />
+           <EditText
+               style="@style/text.name"
+               android:text="Написано строк кода"
+               />
+       </LinearLayout>
+       <View
+           android:layout_width="1dp"
+           android:layout_height="match_parent"
+           android:background="@color/white"/>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_weight="1">
+           <EditText
+               style="@style/text.value"
+               android:text="5"
+               />
+           <EditText
+               style="@style/text.name"
+               android:text="Проектов"
+               />
+       </LinearLayout>
+
+   </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_medial_24"
+        android:background="@color/grey"/>
+    <LinearLayout
+        style="@style/linearLayoutHorizontal">
 
         <ImageView
             style="@style/icon.left"
             android:src="@drawable/ic_call_24dp"/>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/size_large_72"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="@dimen/spacing_medium_32"
-            android:layout_marginRight="@dimen/spacing_normal_16">
+            style="@style/linearLayoutVertical">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
                 <EditText
+                    style="@style/maintext"
                     android:id="@+id/mobile_edittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:hint="Мобильный телефон"
                     android:inputType="phone"
                     android:text="89191894428"
-                    android:enabled="false"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:focusable="false"
                     />
             </android.support.design.widget.TextInputLayout>>
            </LinearLayout>
@@ -58,39 +112,24 @@
     android:layout_marginLeft="@dimen/size_large_72"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/spacing_small_8"
-        android:layout_marginBottom="@dimen/spacing_small_8">
+        style="@style/linearLayoutHorizontal">
 
         <ImageView
             style="@style/icon.left"
             android:src="@drawable/ic_email_24dp"/>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/size_large_72"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="@dimen/spacing_medium_32"
-            android:layout_marginRight="@dimen/spacing_normal_16">
+            style="@style/linearLayoutVertical">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
                 <EditText
+                    style="@style/maintext"
                     android:id="@+id/email_edittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:hint="Почта"
                     android:inputType="textEmailAddress"
                     android:text="ggl.crash@gmail.com"
-                    android:enabled="false"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:focusable="false"
                     />
             </android.support.design.widget.TextInputLayout>>
         </LinearLayout>
@@ -105,5 +144,109 @@
         android:layout_height="2dp"
         android:background="@color/grey"
         android:layout_marginLeft="@dimen/size_large_72"/>
+
+    <LinearLayout
+        style="@style/linearLayoutHorizontal">
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_person_24dp"/>
+
+        <LinearLayout
+            style="@style/linearLayoutVertical">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    style="@style/maintext"
+                    android:id="@+id/profile_edittext"
+                    android:hint="Профиль"
+                    android:inputType="textWebEditText"
+                    android:text="http://vk.com/crash16"
+                    />
+            </android.support.design.widget.TextInputLayout>>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/icon.right"
+            android:src="@drawable/ic_visibility_24dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey"
+        android:layout_marginLeft="@dimen/size_large_72"/>
+
+    <LinearLayout
+        style="@style/linearLayoutHorizontal">
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_cloud_circle_24dp"/>
+
+        <LinearLayout
+            style="@style/linearLayoutVertical">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    style="@style/maintext"
+                    android:id="@+id/repo_edittext"
+                    android:hint="Репозиторий"
+                    android:inputType="textWebEditText"
+                    android:text="http://github.com/mygit"
+                    />
+            </android.support.design.widget.TextInputLayout>>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/icon.right"
+            android:src="@drawable/ic_visibility_24dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey"
+        android:layout_marginLeft="@dimen/size_large_72"/>
+
+    <LinearLayout
+        style="@style/linearLayoutHorizontal">
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_local_library_24dp"/>
+
+        <LinearLayout
+            style="@style/linearLayoutVertical">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    style="@style/maintext"
+                    android:id="@+id/info_edittext"
+                    android:hint="О себе"
+                    android:inputType="textWebEditText"
+                    android:text="Различная информация"
+                    />
+            </android.support.design.widget.TextInputLayout>>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/icon.right"
+            android:src="@drawable/ic_visibility_24dp"/>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey"
+        android:layout_marginLeft="@dimen/size_large_72"
+        />
 
 </LinearLayout>

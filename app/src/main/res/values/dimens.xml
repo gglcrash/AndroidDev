@@ -7,11 +7,12 @@
     <dimen name="size_medium_56">56dp</dimen>
     <dimen name="size_large_72">72dp</dimen>
 
-    <dimen name="spacing_small_8">16dp</dimen>
+    <dimen name="spacing_small_8">8dp</dimen>
     <dimen name="spacing_normal_16">16dp</dimen>
     <dimen name="spacing_medial_24">24dp</dimen>
     <dimen name="spacing_medium_32">32dp</dimen>
-    <dimen name="spacing_large_56">72dp</dimen>
-    <dimen name="spacing_larger_73">72dp</dimen>
+    <dimen name="spacing_large_56">56dp</dimen>
+    <dimen name="spacing_larger_72">72dp</dimen>
 
+    <dimen name="size_of_info_144">144dp</dimen>
 </resources>

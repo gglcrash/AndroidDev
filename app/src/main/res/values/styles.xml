@@ -23,4 +23,46 @@
         <item name="android:layout_marginTop">@dimen/spacing_medial_24</item>
         <item name="android:layout_marginRight">@dimen/spacing_medium_32</item>
     </style>
+
+    <style name="text">
+        <item name="android:enabled">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name ="android:layout_width">wrap_content</item>
+        <item name ="android:layout_height">wrap_content</item>
+        <item name ="android:layout_gravity">center</item>
+    </style>
+    <style name="text.value">
+        <item name="android:textSize">10pt</item>
+    </style>
+    <style name="text.name">
+        <item name="android:textSize">6pt</item>
+    </style>
+
+    <style name="maintext">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:enabled">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/grey</item>
+    </style>
+
+    <style name="linearLayoutVertical">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/size_large_72</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_medium_32</item>
+        <item name="android:layout_marginRight">@dimen/spacing_normal_16</item>
+    </style>
+
+    <style name="linearLayoutHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small_8</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_small_8</item>
+    </style>
 </resources>
