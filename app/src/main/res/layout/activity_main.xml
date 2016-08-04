@@ -29,11 +29,11 @@
            android:orientation="vertical"
            android:layout_weight="1">
            <EditText
-               style="@style/text.value"
+               style="@style/topText.value"
                android:text="5"
                />
            <EditText
-               style="@style/text.name"
+               style="@style/topText.name"
                android:text="Рейтинг"
                />
        </LinearLayout>
@@ -48,11 +48,11 @@
            android:orientation="vertical"
            android:layout_weight="3">
            <EditText
-               style="@style/text.value"
+               style="@style/topText.value"
                android:text="25000"
                />
            <EditText
-               style="@style/text.name"
+               style="@style/topText.name"
                android:text="Написано строк кода"
                />
        </LinearLayout>
@@ -67,11 +67,11 @@
            android:orientation="vertical"
            android:layout_weight="1">
            <EditText
-               style="@style/text.value"
+               style="@style/topText.value"
                android:text="5"
                />
            <EditText
-               style="@style/text.name"
+               style="@style/topText.name"
                android:text="Проектов"
                />
        </LinearLayout>
@@ -82,14 +82,14 @@
         android:layout_height="@dimen/spacing_medial_24"
         android:background="@color/grey"/>
     <LinearLayout
-        style="@style/linearLayoutHorizontal">
+        style="@style/mainLinearLayoutHorizontal">
 
         <ImageView
             style="@style/icon.left"
             android:src="@drawable/ic_call_24dp"/>
 
         <LinearLayout
-            style="@style/linearLayoutVertical">
+            style="@style/innerLinearLayoutVertical">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,14 +116,14 @@
     android:layout_marginLeft="@dimen/size_large_72"/>
 
     <LinearLayout
-        style="@style/linearLayoutHorizontal">
+        style="@style/mainLinearLayoutHorizontal">
 
         <ImageView
             style="@style/icon.left"
             android:src="@drawable/ic_email_24dp"/>
 
         <LinearLayout
-            style="@style/linearLayoutVertical">
+            style="@style/innerLinearLayoutVertical">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,14 +150,14 @@
         android:layout_marginLeft="@dimen/size_large_72"/>
 
     <LinearLayout
-        style="@style/linearLayoutHorizontal">
+        style="@style/mainLinearLayoutHorizontal">
 
         <ImageView
             style="@style/icon.left"
             android:src="@drawable/ic_person_24dp"/>
 
         <LinearLayout
-            style="@style/linearLayoutVertical">
+            style="@style/innerLinearLayoutVertical">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,14 +184,14 @@
         android:layout_marginLeft="@dimen/size_large_72"/>
 
     <LinearLayout
-        style="@style/linearLayoutHorizontal">
+        style="@style/mainLinearLayoutHorizontal">
 
         <ImageView
             style="@style/icon.left"
             android:src="@drawable/ic_cloud_circle_24dp"/>
 
         <LinearLayout
-            style="@style/linearLayoutVertical">
+            style="@style/innerLinearLayoutVertical">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -218,14 +218,14 @@
         android:layout_marginLeft="@dimen/size_large_72"/>
 
     <LinearLayout
-        style="@style/linearLayoutHorizontal">
+        style="@style/mainLinearLayoutHorizontal">
 
         <ImageView
             style="@style/icon.left"
             android:src="@drawable/ic_local_library_24dp"/>
 
         <LinearLayout
-            style="@style/linearLayoutVertical">
+            style="@style/innerLinearLayoutVertical">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -234,7 +234,7 @@
                     style="@style/maintext"
                     android:id="@+id/info_edittext"
                     android:hint="О себе"
-                    android:inputType="textWebEditText"
+                    android:inputType="text"
                     android:text="Различная информация"
                     />
             </android.support.design.widget.TextInputLayout>>
