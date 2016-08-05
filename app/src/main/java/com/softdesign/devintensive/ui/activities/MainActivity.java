@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 "Profile: "+editTextProfile.getText().toString()+"\n"+
                 "Repo: "+editTextRepo.getText().toString()+"\n"+
                 "Info: "+editTextInfo.getText().toString();
+
         intent.putExtra(ConstantManager.EXTRA_MESSAGE, message);
         startActivity(intent);
 

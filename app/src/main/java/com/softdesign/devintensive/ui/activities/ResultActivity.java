@@ -3,6 +3,7 @@ package com.softdesign.devintensive.ui.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.softdesign.devintensive.R;
@@ -20,5 +21,9 @@ public class ResultActivity extends AppCompatActivity {
         EditText resultEditText = (EditText)findViewById(R.id.result_edittext);
         resultEditText.setText(message);
 
+    }
+
+    public void onOk(View v){
+        finish();
     }
 }

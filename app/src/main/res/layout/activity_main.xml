@@ -237,7 +237,6 @@
                     style="@style/maintext"
                     android:id="@+id/info_edittext"
                     android:hint="О себе"
-                    android:inputType="text"
                     android:text="Различная информация"
                     />
             </android.support.design.widget.TextInputLayout>>
