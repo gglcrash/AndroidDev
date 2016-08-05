@@ -77,10 +77,12 @@
        </LinearLayout>
 
    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/spacing_medial_24"
         android:background="@color/grey"/>
+
     <LinearLayout
         style="@style/mainLinearLayoutHorizontal">
 
@@ -109,7 +111,8 @@
             android:src="@drawable/ic_phone_in_talk_24dp"/>
 
     </LinearLayout>
-<View
+
+    <View
     android:layout_width="match_parent"
     android:layout_height="2dp"
     android:background="@color/grey"
@@ -245,7 +248,6 @@
             android:src="@drawable/ic_visibility_24dp"/>
     </LinearLayout>
 
-
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -253,5 +255,15 @@
         android:layout_marginLeft="@dimen/size_large_72"
         />
 
+    <Button
+        android:id="@+id/done_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_normal_16"
+        android:layout_marginRight="@dimen/spacing_medium_32"
+        android:text="Done!"
+        android:onClick="onDoneClick"/>
+
 </LinearLayout>
+
 </android.support.v4.widget.NestedScrollView>

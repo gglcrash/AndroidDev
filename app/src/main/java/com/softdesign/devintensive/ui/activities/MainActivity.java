@@ -1,5 +1,6 @@
 package com.softdesign.devintensive.ui.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
-
-
 
         if(savedInstanceState == null){
             //первый запуск активити
@@ -122,5 +121,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onSaveInstanceState(outState);
 
         Log.d(TAG, "onSaveInstanceState");
+    }
+
+    public void onDoneClick(View v){
+        Intent intent = new Intent(this, ResultActivity.class);
+        EditText editTextMobile = (EditText) findViewById(R.id.mobile_edittext);
+        EditText editTextEmail = (EditText) findViewById(R.id.email_edittext);
+        EditText editTextProfile = (EditText) findViewById(R.id.profile_edittext);
+        EditText editTextRepo = (EditText) findViewById(R.id.repo_edittext);
+        EditText editTextInfo = (EditText) findViewById(R.id.info_edittext);
+        String message ="Mobile: "+ editTextMobile.getText().toString()+"\n"+
+                "E-Mail: "+editTextEmail.getText().toString()+"\n"+
+                "Profile: "+editTextProfile.getText().toString()+"\n"+
+                "Repo: "+editTextRepo.getText().toString()+"\n"+
+                "Info: "+editTextInfo.getText().toString();
+        intent.putExtra(ConstantManager.EXTRA_MESSAGE, message);
+        startActivity(intent);
+
     }
 }
