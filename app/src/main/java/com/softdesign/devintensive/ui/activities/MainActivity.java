@@ -12,9 +12,11 @@ import android.widget.EditText;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.utils.ConstantManager;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private static final String TAG= ConstantManager.TAG_PREFIX+"MainActivity";
+
+    Button mButtonDone;
 
     /**
      * вызывается при создании активити (изменения конфигурации либо возврата к ней после
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
+
+        mButtonDone = (Button)findViewById(R.id.done_btn);
+        mButtonDone.setOnClickListener(this);
 
         if(savedInstanceState == null){
             //первый запуск активити
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * должен быть максмально ЛЕГКОВЕСНЫМ для лучшей отзывчивости UI
      */
     @Override
-         protected void onResume() {
+    protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
     }
@@ -112,7 +117,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.done_btn:
+                onDone();
+                break;
+        }
 
     }
 
@@ -123,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "onSaveInstanceState");
     }
 
-    public void onDoneClick(View v){
+    private void onDone(){
         Intent intent = new Intent(this, ResultActivity.class);
         EditText editTextMobile = (EditText) findViewById(R.id.mobile_edittext);
         EditText editTextEmail = (EditText) findViewById(R.id.email_edittext);
@@ -138,6 +147,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         intent.putExtra(ConstantManager.EXTRA_MESSAGE, message);
         startActivity(intent);
-
     }
+
 }

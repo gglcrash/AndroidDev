@@ -25,11 +25,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textLabel"/>
     <Button
+        android:id="@+id/button_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OK"
         android:layout_below="@id/result_edittext"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:onClick="onOk"/>
+        />
+    <Button
+        android:id="@+id/button_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call by phone"
+        android:layout_below="@+id/button_ok"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+
+        />
 </RelativeLayout>
