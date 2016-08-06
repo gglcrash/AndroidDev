@@ -2,6 +2,8 @@ package com.softdesign.devintensive.ui.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +18,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private static final String TAG= ConstantManager.TAG_PREFIX+"MainActivity";
 
-    Button mButtonDone;
-
+    private Button mButtonDone;
+    private CoordinatorLayout mCoordinatorLayout;
     /**
      * вызывается при создании активити (изменения конфигурации либо возврата к ней после
      * уничтожения.
@@ -37,12 +39,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
         mButtonDone = (Button)findViewById(R.id.done_btn);
         mButtonDone.setOnClickListener(this);
+        mCoordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_coordinator_layout);
 
         if(savedInstanceState == null){
             //первый запуск активити
+            showSnackBar("Активити запускается впервые");
         } else {
             //активити создается не впервые
-
+            showSnackBar("Активити уже создавалось");
         }
     }
 
@@ -149,4 +153,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         startActivity(intent);
     }
 
+    private void showSnackBar(String message){
+        Snackbar.make(mCoordinatorLayout,message, Snackbar.LENGTH_LONG).show();
+    }
 }
