@@ -8,9 +8,9 @@
     android:paddingBottom="@dimen/spacing_small_8"
     android:background="@drawable/header_background">
 <ImageView
+    android:id="@+id/circle_avatar"
     android:layout_width="60dp"
     android:layout_height="60dp"
-    android:background="@color/color_accent"
     android:layout_marginTop="@dimen/spacing_normal_16"
     />
 

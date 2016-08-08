@@ -1,7 +1,9 @@
 package com.softdesign.devintensive.ui.activities;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.LayoutRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,10 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
 import com.softdesign.devintensive.utils.ConstantManager;
+import com.softdesign.devintensive.utils.RoundedAvatarDrawable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +34,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private boolean mCurrentEditMode;
 
+    private ImageView mAvatarImageView;
+
+    private BitmapDrawable mBmpAvatarRounded;
     private DataManager mDataManager;
 
+    private NavigationView mNavigationView;
     private EditText mEditTextMobile, mEditTextEmail, mEditTextProfile, mEditTextRepo, mEditTextInfo;
     private Toolbar mToolbar;
     private Button mButtonDone;
@@ -60,8 +68,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mDataManager = DataManager.getInstance();
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
         mButtonDone = (Button) findViewById(R.id.done_btn);
         mButtonDone.setOnClickListener(this);
+
+        //скругление аватара
+        mNavigationView = (NavigationView)findViewById(R.id.navigation_view);
+        mAvatarImageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.circle_avatar);
+        mBmpAvatarRounded = (BitmapDrawable) getResources().getDrawable(R.drawable.user_photo_mini);
+        mAvatarImageView.setImageDrawable(new RoundedAvatarDrawable(mBmpAvatarRounded.getBitmap()));
+
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_layout);
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mFab = (FloatingActionButton) findViewById(R.id.fab);
