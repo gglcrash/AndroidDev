@@ -1,8 +1,9 @@
 package com.softdesign.devintensive.ui.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.provider.ContactsContract;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -17,24 +18,35 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.softdesign.devintensive.R;
+import com.softdesign.devintensive.data.managers.DataManager;
 import com.softdesign.devintensive.utils.ConstantManager;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+import java.util.ArrayList;
+import java.util.List;
 
-    private static final String TAG= ConstantManager.TAG_PREFIX+"MainActivity";
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
+    private static final String TAG = ConstantManager.TAG_PREFIX + "MainActivity";
+
+    private boolean mCurrentEditMode;
+
+    private DataManager mDataManager;
+
+    private EditText mEditTextMobile, mEditTextEmail, mEditTextProfile, mEditTextRepo, mEditTextInfo;
     private Toolbar mToolbar;
     private Button mButtonDone;
     private CoordinatorLayout mCoordinatorLayout;
     private DrawerLayout mNavigationDrawer;
+    private FloatingActionButton mFab;
+    private List<EditText> mUserInfo;
 
     /**
      * вызывается при создании активити (изменения конфигурации либо возврата к ней после
      * уничтожения.
-     *
+     * <p/>
      * в методе инициализируется/производится:
      * UI, статические данные, связь данных со списками (иниц. адаптеров)
-     *
+     * <p/>
      * Длительные операции тут не запускать!
      *
      * @param savedInstanceState - объект со значениями, сохраненными в Bundle - состояние UI
@@ -45,27 +57,48 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
 
-        mToolbar = (Toolbar)findViewById(R.id.toolbar);
-        mButtonDone = (Button)findViewById(R.id.done_btn);
-        mButtonDone.setOnClickListener(this);
-        mCoordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_coordinator_layout);
-        mNavigationDrawer = (DrawerLayout)findViewById(R.id.navigation_drawer);
 
+        mDataManager = DataManager.getInstance();
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mButtonDone = (Button) findViewById(R.id.done_btn);
+        mButtonDone.setOnClickListener(this);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_layout);
+        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mEditTextMobile = (EditText) findViewById(R.id.mobile_edittext);
+        mEditTextEmail = (EditText) findViewById(R.id.email_edittext);
+        mEditTextProfile = (EditText) findViewById(R.id.profile_edittext);
+        mEditTextRepo = (EditText) findViewById(R.id.repo_edittext);
+        mEditTextInfo = (EditText) findViewById(R.id.info_edittext);
+
+        mUserInfo = new ArrayList<>();
+        mUserInfo.add(mEditTextMobile);
+        mUserInfo.add(mEditTextEmail);
+        mUserInfo.add(mEditTextProfile);
+        mUserInfo.add(mEditTextRepo);
+        mUserInfo.add(mEditTextInfo);
+
+        saveUserInfoValue();
+
+        mFab.setOnClickListener(this);
         setupToolbar();
         setupDrawer();
+        loadUserInfoValue();
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             //первый запуск активити
             showSnackBar("Активити запускается впервые");
         } else {
             //активити создается не впервые
+            mCurrentEditMode = savedInstanceState.getBoolean(ConstantManager.EDIT_MODE_KEY, false);
+            changeEditMode(mCurrentEditMode);
             showSnackBar("Активити уже создавалось");
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             mNavigationDrawer.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
@@ -97,12 +130,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     /**
      * вызывается когда текущая активити теряет фокус, но остается видимой (всплывает диалоговое
      * окно, либо наше частично перекрывается другой активити и т.п.)
-     *
+     * <p/>
      * в нем реализуется соханение легковесных UI данных/анимаций/аудио/видео и т.д.
      */
     @Override
     protected void onPause() {
         super.onPause();
+
         Log.d(TAG, "onPause");
     }
 
@@ -142,9 +176,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.done_btn:
                 onDone();
+                break;
+            case R.id.fab:
+                if (mCurrentEditMode) {
+                    changeEditMode(false);
+                    mCurrentEditMode = false;
+                } else {
+                    changeEditMode(true);
+                    mCurrentEditMode = true;
+                }
                 break;
         }
 
@@ -154,41 +197,39 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        outState.putBoolean(ConstantManager.EDIT_MODE_KEY, mCurrentEditMode);
+
         Log.d(TAG, "onSaveInstanceState");
     }
 
-    private void onDone(){
+    private void onDone() {
         Intent intent = new Intent(this, ResultActivity.class);
-        EditText editTextMobile = (EditText) findViewById(R.id.mobile_edittext);
-        EditText editTextEmail = (EditText) findViewById(R.id.email_edittext);
-        EditText editTextProfile = (EditText) findViewById(R.id.profile_edittext);
-        EditText editTextRepo = (EditText) findViewById(R.id.repo_edittext);
-        EditText editTextInfo = (EditText) findViewById(R.id.info_edittext);
-        String message ="Mobile: "+ editTextMobile.getText().toString()+"\n"+
-                "E-Mail: "+editTextEmail.getText().toString()+"\n"+
-                "Profile: "+editTextProfile.getText().toString()+"\n"+
-                "Repo: "+editTextRepo.getText().toString()+"\n"+
-                "Info: "+editTextInfo.getText().toString();
+
+        String message = "Mobile: " + mEditTextMobile.getText().toString() + "\n" +
+                "E-Mail: " + mEditTextEmail.getText().toString() + "\n" +
+                "Profile: " + mEditTextProfile.getText().toString() + "\n" +
+                "Repo: " + mEditTextRepo.getText().toString() + "\n" +
+                "Info: " + mEditTextInfo.getText().toString();
 
         intent.putExtra(ConstantManager.EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
-    private void showSnackBar(String message){
-        Snackbar.make(mCoordinatorLayout,message, Snackbar.LENGTH_LONG).show();
+    private void showSnackBar(String message) {
+        Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
     }
 
-    private void setupToolbar(){
+    private void setupToolbar() {
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar!=null){
+        if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 
-    private void setupDrawer(){
-        NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
+    private void setupDrawer() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -198,5 +239,44 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 return false;
             }
         });
+    }
+
+    /**
+     * переключает режим редактирования информации
+     *
+     * @param mode если 1 - редактирование, 0 - просмотр
+     */
+    private void changeEditMode(boolean mode) {
+        if (mode) {
+            mFab.setImageResource(R.drawable.ic_done_24dp);
+            for (EditText userValue : mUserInfo) {
+                userValue.setEnabled(true);
+                userValue.setFocusable(true);
+                userValue.setFocusableInTouchMode(true);
+            }
+        } else {
+            saveUserInfoValue();
+            mFab.setImageResource(R.drawable.ic_edit_24dp);
+            for (EditText userValue : mUserInfo) {
+                userValue.setEnabled(false);
+                userValue.setFocusable(false);
+                userValue.setFocusableInTouchMode(false);
+            }
+        }
+    }
+
+    private void loadUserInfoValue() {
+        List<String> userData = mDataManager.getPreferencesManager().loadUserProfileData();
+        for(int i=0;i<userData.size();i++){
+            mUserInfo.get(i).setText(userData.get(i));
+        }
+    }
+
+    private void saveUserInfoValue() {
+        List<String> userData = new ArrayList<>();
+        for (EditText userFieldView : mUserInfo) {
+            userData.add(userFieldView.getText().toString());
+        }
+        mDataManager.getPreferencesManager().saveUserProfileData(userData);
     }
 }
