@@ -15,4 +15,5 @@
     <dimen name="spacing_larger_72">72dp</dimen>
 
     <dimen name="size_of_info_144">144dp</dimen>
+    <dimen name="profile_image_size_240">240dp</dimen>
 </resources>

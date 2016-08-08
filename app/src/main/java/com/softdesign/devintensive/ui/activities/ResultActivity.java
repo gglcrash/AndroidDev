@@ -45,13 +45,13 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.button_call:
-/*                showProgress();
-                runWithDelay();*/
+                showProgress();
+                runWithDelay();
                 break;
         }
     }
 
-  /*  private void runWithDelay(){
+    private void runWithDelay(){
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -59,7 +59,7 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
                 //TODO: выполнить с задержкой
                 hideProgress();
             }
-        },3000);
+        },2000);
     }
-*/
+
 }
