@@ -2,8 +2,6 @@ package com.softdesign.devintensive.ui.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.LayoutRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -94,11 +93,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserInfo.add(mEditTextRepo);
         mUserInfo.add(mEditTextInfo);
 
-        saveUserInfoValue();
+      //  saveUserInfoValue();
 
         mFab.setOnClickListener(this);
         setupToolbar();
         setupDrawer();
+
         loadUserInfoValue();
 
         if (savedInstanceState == null) {
@@ -294,5 +294,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             userData.add(userFieldView.getText().toString());
         }
         mDataManager.getPreferencesManager().saveUserProfileData(userData);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mNavigationView.isShown()){
+            mNavigationDrawer.closeDrawer(Gravity.LEFT);
+        }
+        else{
+            super.onBackPressed();
+        }
     }
 }
