@@ -17,4 +17,6 @@
     <dimen name="size_of_info_144">144dp</dimen>
     <dimen name="profile_image_size_240">240dp</dimen>
     <dimen name="fab_right_space">8dp</dimen>
+    <dimen name="line_width">1dp</dimen>
+    <dimen name="line_height">70dp</dimen>
 </resources>

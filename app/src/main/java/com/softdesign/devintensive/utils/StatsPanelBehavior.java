@@ -14,9 +14,9 @@ import com.softdesign.devintensive.R;
 /**
  * Created by gglcrash on 09.08.2016.
  */
-public class StatsPaneBehavior extends CoordinatorLayout.Behavior<LinearLayout> {
+public class StatsPanelBehavior extends CoordinatorLayout.Behavior<LinearLayout> {
 
-    public StatsPaneBehavior(Context context, AttributeSet attrs) {
+    public StatsPanelBehavior(Context context, AttributeSet attrs) {
     }
 
     @Override
@@ -26,14 +26,10 @@ public class StatsPaneBehavior extends CoordinatorLayout.Behavior<LinearLayout> 
 
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, LinearLayout child, View dependency) {
-        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
-        if(dependency.getY()>=128&&dependency.getY()<=224){
-            lp.height=(int)dependency.getY()/2;
-        }
-        dependency.setPadding(dependency.getPaddingLeft(), lp.height,
-                dependency.getPaddingRight(),dependency.getPaddingBottom());
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
         child.setY(dependency.getY());
-        child.setLayoutParams(lp);
+        layoutParams.height = (int) (dependency.getY() * 0.300+110);
+        dependency.setPadding(dependency.getPaddingLeft(), layoutParams.height, dependency.getPaddingRight(), dependency.getPaddingBottom());
         return true;
     }
 }

@@ -7,14 +7,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".ui.activities.MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         >
 
         <android.support.design.widget.AppBarLayout
@@ -32,7 +30,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 >
 
-                <ImageView
+                <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/user_photo_img"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/profile_image_size_240"
@@ -49,13 +47,95 @@
                     app:layout_collapseMode="pin"/>
             </android.support.design.widget.CollapsingToolbarLayout>
 
-
         </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/stats_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal"
+            app:layout_behavior="com.softdesign.devintensive.utils.StatsPanelBehavior"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/spacing_small_8"
+                android:paddingBottom="@dimen/spacing_small_8">
+
+                <EditText
+                    style="@style/topText.value"
+                    android:text="@string/rating_count"
+
+                    />
+
+                <EditText
+                    style="@style/topText.name"
+                    android:text="@string/rating_label"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/line_width"
+                android:layout_height="@dimen/line_height"
+                android:layout_gravity="center"
+                android:background="@color/white"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_small_8"
+                android:paddingBottom="@dimen/spacing_small_8">
+
+                <EditText
+                    style="@style/topText.value"
+                    android:text="@string/code_strings_count"
+                    />
+
+                <EditText
+                    style="@style/topText.name"
+                    android:text="@string/code_strings_label"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/line_width"
+                android:layout_height="@dimen/line_height"
+                android:layout_gravity="center"
+                android:background="@color/white"/>
+
+            <LinearLayout
+                android:paddingTop="@dimen/spacing_small_8"
+                android:paddingBottom="@dimen/spacing_small_8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <EditText
+                    style="@style/topText.value"
+                    android:text="@string/projects_count"
+
+                    />
+
+                <EditText
+                    style="@style/topText.name"
+                    android:text="@string/projects_label"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
             >
 
             <LinearLayout
@@ -63,86 +143,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_normal_16"
-                    android:background="@color/grey"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey"
-                    android:orientation="horizontal"
-                    app:layout_behavior="com.softdesign.devintensive.utils.StatsPaneBehavior"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <EditText
-                            style="@style/topText.value"
-                            android:text="5"
-                            />
-
-                        <EditText
-                            style="@style/topText.name"
-                            android:text="Рейтинг"
-                            />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:orientation="vertical">
-
-                        <EditText
-                            style="@style/topText.value"
-                            android:text="25000"
-                            />
-
-                        <EditText
-                            style="@style/topText.name"
-                            android:text="Написано строк кода"
-                            />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <EditText
-                            style="@style/topText.value"
-                            android:text="5"
-                            />
-
-                        <EditText
-                            style="@style/topText.name"
-                            android:text="Проектов"
-                            />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_normal_16"
-                    android:background="@color/grey"/>
 
                 <LinearLayout
                     style="@style/mainLinearLayoutHorizontal">
@@ -342,6 +342,7 @@
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
