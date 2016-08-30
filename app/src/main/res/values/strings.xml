@@ -6,4 +6,14 @@
     <string name="code_strings_count">25000</string>
     <string name="projects_count">5</string>
     <string name="projects_label">Проектов</string>
+    <string name="emailName">Почта</string>
+    <string name="email">ggl.crash@gmail.com</string>
+    <string name="profileName">Профиль</string>
+    <string name="profileLink">http://vk.com/crash16</string>
+    <string name="repoName">Репозиторий</string>
+    <string name="repoLink">http://github.com/mygit</string>
+    <string name="infoName">О себе</string>
+    <string name="info">Различная информация</string>
+    <string name="doneBtnText">Done!</string>
+    <string name="user_change_image">Изменить фотографию профиля</string>
 </resources>
