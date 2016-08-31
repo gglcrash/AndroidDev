@@ -16,4 +16,12 @@
     <string name="info">Различная информация</string>
     <string name="doneBtnText">Done!</string>
     <string name="user_change_image">Изменить фотографию профиля</string>
+    <string name="user_photo.load">Загрузить из галлереи</string>
+    <string name="user_photo.capture">Сделать снимок</string>
+    <string name="user_photo.cancel">Отменить</string>
+    <string name="user_photo.change_title">Изменить фотографию профиля</string>
+    <string name="choose_photo">Выберите фото</string>
+    <string name="user_photo_reset">Сбросить фото</string>
+    <string name="get_permissions_text">Для корректной работы приложения необходимо дать требуемые разрешения</string>
+    <string name="allow_permission_text">Разрешить</string>
 </resources>
