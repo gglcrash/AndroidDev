@@ -13,6 +13,7 @@
         android:id="@+id/main_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         >
 
         <android.support.design.widget.AppBarLayout
@@ -47,7 +48,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/grey_background"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -71,16 +73,17 @@
                 </FrameLayout>
 
 
-
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:theme="@style/AppTheme.PopupOverlay"
-                    app:layout_collapseMode="pin"/>
+                    app:layout_collapseMode="pin"
+                    />
             </android.support.design.widget.CollapsingToolbarLayout>
 
         </android.support.design.widget.AppBarLayout>
+
 
 
         <include layout="@layout/user_profile_content"/>

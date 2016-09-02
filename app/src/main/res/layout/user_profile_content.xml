@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:background="@color/grey"
         android:orientation="horizontal"
-
         >
 
         <LinearLayout
@@ -122,6 +121,7 @@
 
         <ImageView
             style="@style/icon.right"
+            android:id="@+id/call_image"
             android:src="@drawable/ic_phone_in_talk_24dp"/>
 
     </LinearLayout>
@@ -160,6 +160,7 @@
 
         <ImageView
             style="@style/icon.right"
+            android:id="@+id/email_image"
             android:src="@drawable/ic_send_24dp"/>
     </LinearLayout>
 
@@ -197,6 +198,7 @@
 
         <ImageView
             style="@style/icon.right"
+            android:id="@+id/open_profile_image"
             android:src="@drawable/ic_visibility_24dp"/>
     </LinearLayout>
 
@@ -234,6 +236,7 @@
 
         <ImageView
             style="@style/icon.right"
+            android:id="@+id/open_repo_image"
             android:src="@drawable/ic_visibility_24dp"/>
     </LinearLayout>
 

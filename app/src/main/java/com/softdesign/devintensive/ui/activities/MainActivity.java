@@ -2,6 +2,7 @@ package com.softdesign.devintensive.ui.activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -76,7 +78,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private File mPhotoFile = null;
     private Uri mSelectedImage = null;
     private AppCompatImageView mProfileImage;
-
+    private ImageView mCallByPhoneImage, mSendEmailImage, mProfileLinkImage, mRepoLinkImage;
 
     /**
      * вызывается при создании активити (изменения конфигурации либо возврата к ней после
@@ -117,6 +119,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mProfilePlaceholder = (RelativeLayout) findViewById((R.id.profile_placeholder));
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
         mProfileImage = (AppCompatImageView) findViewById(R.id.user_photo_img);
+        mCallByPhoneImage = (ImageView) findViewById(R.id.call_image);
+        mSendEmailImage = (ImageView) findViewById(R.id.email_image);
+        mProfileLinkImage = (ImageView) findViewById(R.id.open_profile_image);
+        mRepoLinkImage = (ImageView) findViewById(R.id.open_repo_image);
+
 
         mUserInfo = new ArrayList<>();
         mUserInfo.add(mEditTextMobile);
@@ -125,10 +132,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserInfo.add(mEditTextRepo);
         mUserInfo.add(mEditTextInfo);
 
-        //  saveUserInfoValue();
+        //saveUserInfoValue();
 
         mProfilePlaceholder.setOnClickListener(this);
         mFab.setOnClickListener(this);
+        mCallByPhoneImage.setOnClickListener(this);
+        mSendEmailImage.setOnClickListener(this);
+        mProfileLinkImage.setOnClickListener(this);
+        mRepoLinkImage.setOnClickListener(this);
+
+
         setupToolbar();
         setupDrawer();
 
@@ -244,6 +257,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.profile_placeholder:
                 showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
                 break;
+
+            case R.id.call_image:
+                callByPhone(mEditTextMobile.getText().toString());
+                break;
+
+            case R.id.email_image:
+                sendEmail(mEditTextEmail.getText().toString());
+                break;
+
+            case R.id.open_profile_image:
+                openLink(mEditTextProfile.getText().toString());
+                break;
+
+            case R.id.open_repo_image:
+                openLink(mEditTextRepo.getText().toString());
+                break;
         }
 
     }
@@ -300,10 +329,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 userValue.setEnabled(true);
                 userValue.setFocusable(true);
                 userValue.setFocusableInTouchMode(true);
-                showProfilePlaceholder();
-                lockToolbar();
-                mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
             }
+
+            mEditTextMobile.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(mEditTextMobile, InputMethodManager.SHOW_IMPLICIT);
+
+            showProfilePlaceholder();
+            lockToolbar();
+            mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         } else {
             saveUserInfoValue();
             mFab.setImageResource(R.drawable.ic_edit_24dp);
@@ -311,10 +345,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 userValue.setEnabled(false);
                 userValue.setFocusable(false);
                 userValue.setFocusableInTouchMode(false);
-                hideProfilePlaceholder();
-                unlockToolbar();
-                mCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.white));
             }
+            hideProfilePlaceholder();
+            unlockToolbar();
+            mCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.white));
         }
     }
 
@@ -385,15 +419,59 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    private void callByPhone(String mobile){
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            if(mobile.length()>8&&mobile.length()<18) {
+                Intent dialIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobile));
+                startActivity(dialIntent);
+            }
+        }
+        else{
+            ActivityCompat.requestPermissions(this,new String[]{ android.Manifest.permission.CALL_PHONE },
+                    ConstantManager.CALL_PHONE_PERMISSION_CODE);
+
+            Snackbar.make(mCoordinatorLayout, getString(R.string.get_permissions_text), Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.allow_permission_text), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            openApplicationSettings();
+                        }
+                    }).show();
+        }
+    }
+
+    private void sendEmail(String email){
+
+        if(email.length()>4) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND, Uri.fromParts(
+                    "mailto", email, null));
+            emailIntent.setType("message/rfc822");
+
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
+            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+        }
+    }
+
+    private void openLink(String link){
+        if(link.length()>2) {
+            Intent browseIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            startActivity(browseIntent);
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==ConstantManager.CAMERA_REQUSET_PERMISSION_CODE&& grantResults.length==2){
+        if(requestCode==ConstantManager.CAMERA_REQUSET_PERMISSION_CODE && grantResults.length==2){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 //todo: обработать "разрешение получено", например, вывести msg или обработать логикой
             }
             if(grantResults[1] == PackageManager.PERMISSION_GRANTED){
                 //todo: обработать "разрешение получено", например, вывести msg или обработать логикой
             }
+        }
+        if(requestCode==ConstantManager.CALL_PHONE_PERMISSION_CODE){
+            //todo: обработать
         }
     }
 
@@ -495,6 +573,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Picasso.with(this)
                 .load(R.drawable.user_photo)
                 .into(mProfileImage);
+
+        mDataManager.getPreferencesManager().saveUserPhoto(
+                Uri.parse("android.resource://com.softdesign.devintensive/drawable/user_photo")
+        );
     }
 
     private File createImageFile()
@@ -509,7 +591,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         values.put(MediaStore.Images.Media.DATE_TAKEN,System.currentTimeMillis());
         values.put(MediaStore.Images.Media.MIME_TYPE, "images/jpeg");
         values.put(MediaStore.MediaColumns.DATA,image.getAbsolutePath());
-        
+
         this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
 
         return image;
