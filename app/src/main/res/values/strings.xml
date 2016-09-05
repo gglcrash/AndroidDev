@@ -24,4 +24,9 @@
     <string name="user_photo_reset">Сбросить фото</string>
     <string name="get_permissions_text">Для корректной работы приложения необходимо дать требуемые разрешения</string>
     <string name="allow_permission_text">Разрешить</string>
+    <string name="check_link">Проверьте ссылку</string>
+    <string name="enter_button_text">Войти</string>
+    <string name="enter_text_upper">ВОЙТИ</string>
+    <string name="password_text">Пароль</string>
+    <string name="forget_password_text">Забыли пароль?</string>
 </resources>

@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.nfc.FormatException;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -47,6 +48,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -454,9 +456,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void openLink(String link){
-        if(link.length()>2) {
-            Intent browseIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-            startActivity(browseIntent);
+        if(link.length()>3) {
+                Intent browseIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                startActivity(browseIntent);
         }
     }
 

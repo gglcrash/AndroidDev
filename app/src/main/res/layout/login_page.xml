@@ -1,10 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+    android:background="@color/grey_light">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey_background"
+    android:layout_marginRight="@dimen/spacing_larger_72"
+    android:layout_marginLeft="@dimen/spacing_larger_72"
+    android:layout_centerVertical="true"
+    android:orientation="vertical">
+
+    <EditText
+        style="@style/maintext"
+        android:text="@string/enter_text_upper"
+        android:layout_marginLeft="@dimen/spacing_medial_24"
+        android:layout_marginTop="@dimen/spacing_medial_24"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/spacing_medial_24"
+        android:layout_marginLeft="@dimen/spacing_medial_24"
+        android:layout_marginTop="@dimen/spacing_normal_16"
+        >
+
+        <EditText
+            android:id="@+id/login_email_edittext"
+            style="@style/maintext"
+            android:hint="@string/emailName"
+            android:inputType="textEmailAddress"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/spacing_medial_24"
+        android:layout_marginLeft="@dimen/spacing_medial_24"
+        android:layout_marginTop="@dimen/spacing_normal_16"
+        >
+
+        <EditText
+            android:id="@+id/password_edittext"
+            style="@style/maintext"
+            android:hint="@string/password_text"
+            android:inputType="textPassword"
+            />
+    </android.support.design.widget.TextInputLayout>
 
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_button_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/spacing_medial_24"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forget_password_text"
+        android:layout_marginTop="@dimen/spacing_normal_16"
+        android:layout_marginBottom="@dimen/spacing_medial_24"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
+
+
+</RelativeLayout>
