@@ -17,6 +17,9 @@ public class BaseActivity extends AppCompatActivity {
     static final String TAG = ConstantManager.TAG_PREFIX+"BaseActivity";
     protected ProgressDialog mProgressDialog;
 
+    /**
+     * показать кружок загрузки
+     */
     public void showProgress(){
         if(mProgressDialog==null){
             mProgressDialog=new ProgressDialog(this, R.style.custom_dialog);
