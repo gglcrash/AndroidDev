@@ -50,32 +50,43 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = ConstantManager.TAG_PREFIX + "MainActivity";
 
     private boolean mCurrentEditMode;
 
-    private ImageView mAvatarImageView;
-
     private BitmapDrawable mBmpAvatarRounded;
     private DataManager mDataManager;
 
-    private NavigationView mNavigationView;
-    private EditText mEditTextMobile, mEditTextEmail, mEditTextProfile, mEditTextRepo, mEditTextInfo;
-    private Toolbar mToolbar;
-    private CoordinatorLayout mCoordinatorLayout;
-    private DrawerLayout mNavigationDrawer;
-    private FloatingActionButton mFab;
-    private List<EditText> mUserInfo;
-    private RelativeLayout mProfilePlaceholder;
-    private CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.navigation_view) NavigationView mNavigationView;
+    @BindView(R.id.mobile_edittext) EditText mEditTextMobile;
+    @BindView(R.id.email_edittext) EditText mEditTextEmail;
+    @BindView(R.id.profile_edittext) EditText mEditTextProfile;
+    @BindView(R.id.repo_edittext) EditText mEditTextRepo;
+    @BindView(R.id.info_edittext) EditText mEditTextInfo;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.main_coordinator_layout) CoordinatorLayout mCoordinatorLayout;
+    @BindView(R.id.navigation_drawer) DrawerLayout mNavigationDrawer;
+    @BindView(R.id.fab) FloatingActionButton mFab;
+    @BindView(R.id.profile_placeholder) RelativeLayout mProfilePlaceholder;
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.appbar_layout) AppBarLayout mAppBarLayout;
+    @BindView(R.id.user_photo_img) AppCompatImageView mProfileImage;
+    @BindView(R.id.call_image) ImageView mCallByPhoneImage;
+    @BindView(R.id.email_image) ImageView mSendEmailImage;
+    @BindView(R.id.open_profile_image) ImageView mProfileLinkImage;
+    @BindView(R.id.open_repo_image) ImageView mRepoLinkImage;
+
+    private ImageView mAvatarImageView;
     private AppBarLayout.LayoutParams mAppBarParams = null;
-    private AppBarLayout mAppBarLayout;
+    private List<EditText> mUserInfo;
     private File mPhotoFile = null;
     private Uri mSelectedImage = null;
-    private AppCompatImageView mProfileImage;
-    private ImageView mCallByPhoneImage, mSendEmailImage, mProfileLinkImage, mRepoLinkImage;
 
     /**
      * Длительные операции тут не запускать!
@@ -86,35 +97,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate");
-
-
+        ButterKnife.bind(this);
         mDataManager = DataManager.getInstance();
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         //скругление аватара
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mAvatarImageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.circle_avatar);
         mBmpAvatarRounded = (BitmapDrawable) getResources().getDrawable(R.drawable.user_photo_mini);
         mAvatarImageView.setImageDrawable(new RoundedAvatarDrawable(mBmpAvatarRounded.getBitmap()));
-
-        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_layout);
-        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mEditTextMobile = (EditText) findViewById(R.id.mobile_edittext);
-        mEditTextEmail = (EditText) findViewById(R.id.email_edittext);
-        mEditTextProfile = (EditText) findViewById(R.id.profile_edittext);
-        mEditTextRepo = (EditText) findViewById(R.id.repo_edittext);
-        mEditTextInfo = (EditText) findViewById(R.id.info_edittext);
-        mProfilePlaceholder = (RelativeLayout) findViewById((R.id.profile_placeholder));
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
-        mProfileImage = (AppCompatImageView) findViewById(R.id.user_photo_img);
-        mCallByPhoneImage = (ImageView) findViewById(R.id.call_image);
-        mSendEmailImage = (ImageView) findViewById(R.id.email_image);
-        mProfileLinkImage = (ImageView) findViewById(R.id.open_profile_image);
-        mRepoLinkImage = (ImageView) findViewById(R.id.open_repo_image);
-
 
         mUserInfo = new ArrayList<>();
         mUserInfo.add(mEditTextMobile);
@@ -122,15 +111,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserInfo.add(mEditTextProfile);
         mUserInfo.add(mEditTextRepo);
         mUserInfo.add(mEditTextInfo);
-
-
-        mProfilePlaceholder.setOnClickListener(this);
-        mFab.setOnClickListener(this);
-        mCallByPhoneImage.setOnClickListener(this);
-        mSendEmailImage.setOnClickListener(this);
-        mProfileLinkImage.setOnClickListener(this);
-        mRepoLinkImage.setOnClickListener(this);
-
 
         setupToolbar();
         setupDrawer();
@@ -148,6 +128,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mCurrentEditMode = savedInstanceState.getBoolean(ConstantManager.EDIT_MODE_KEY, false);
             changeEditMode(mCurrentEditMode);
         }
+
+
     }
 
     @Override
@@ -163,42 +145,43 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * обработка кликов
      * заменится с ButterKnife
      */
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
 
-            case R.id.fab:
-                if (mCurrentEditMode) {
-                    changeEditMode(false);
-                    mCurrentEditMode = false;
-                } else {
-                    changeEditMode(true);
-                    mCurrentEditMode = true;
-                }
-                break;
-
-            case R.id.profile_placeholder:
-                showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
-                break;
-
-            case R.id.call_image:
-                callByPhone(mEditTextMobile.getText().toString());
-                break;
-
-            case R.id.email_image:
-                sendEmail(mEditTextEmail.getText().toString());
-                break;
-
-            case R.id.open_profile_image:
-                openLink(mEditTextProfile.getText().toString());
-                break;
-
-            case R.id.open_repo_image:
-                openLink(mEditTextRepo.getText().toString());
-                break;
-        }
-
+    @OnClick(R.id.profile_placeholder)
+    public void profilePlaceholderClick(){
+        showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
     }
+
+    @OnClick(R.id.call_image)
+    public void onCallClick(){
+        callByPhone(mEditTextMobile.getText().toString());
+    }
+
+    @OnClick(R.id.fab)
+    public void onFabClick(){
+        if (mCurrentEditMode) {
+            changeEditMode(false);
+            mCurrentEditMode = false;
+        } else {
+            changeEditMode(true);
+            mCurrentEditMode = true;
+        }
+    }
+
+    @OnClick(R.id.email_image)
+    public void onEmailSend(){
+        sendEmail(mEditTextEmail.getText().toString());
+    }
+
+    @OnClick(R.id.open_profile_image)
+    public void onProfileClick(){
+        openLink(mEditTextProfile.getText().toString());
+    }
+
+    @OnClick(R.id.open_repo_image)
+    public void onRepoClick(){
+        openLink(mEditTextRepo.getText().toString());
+    }
+
 
     /**
      * соханение текущего значения режима редактирования
@@ -580,7 +563,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         return image;
     }
-    
+
     public void openApplicationSettings() {
         Intent appSettingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.parse("package:" + getPackageName()));
