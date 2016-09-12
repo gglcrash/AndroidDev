@@ -21,8 +21,9 @@ public class CustomNestedScrollBehavior extends AppBarLayout.ScrollingViewBehavi
         super(context, attrs);
 
         mMinAppbarHeight= UiHelper.getStatusBarHeight()+UiHelper.getActionBarHeight();
-        mMaxAppbarHeight = context.getResources().getDimensionPixelOffset(R.dimen.profile_image_size_256);
+        mMaxAppbarHeight = context.getResources().getDimensionPixelSize(R.dimen.profile_image_size_256);
         mMaxUserInfoHeight = context.getResources().getDimensionPixelSize(R.dimen.user_info_height);
+
     }
 
     @Override

@@ -29,7 +29,7 @@ public class UiHelper {
     }
 
     public static int lerp(int start,int end, float friction){
-        return (int) (start*(end-start)*friction);
+        return (int) (start+(end-start)*friction);
     }
 
     public static float currentFriction(int start,int end, int currentValue){
