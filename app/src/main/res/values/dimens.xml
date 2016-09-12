@@ -20,4 +20,6 @@
     <dimen name="line_width">1dp</dimen>
     <dimen name="line_height">70dp</dimen>
     <dimen name="placeholder_photo_size_90">90dp</dimen>
+    <dimen name="user_info_height">112dp</dimen>
+    <dimen name="user_info_behavior_min_height">56dp</dimen>
 </resources>

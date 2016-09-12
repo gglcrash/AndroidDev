@@ -3,94 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_behavior=".ui.behaviors.CustomNestedScrollBehavior"
     >
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <LinearLayout
-        android:id="@+id/stats_panel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/grey"
-        android:orientation="horizontal"
-        >
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:paddingTop="@dimen/spacing_small_8"
-            android:paddingBottom="@dimen/spacing_small_8">
-
-            <EditText
-                style="@style/topText.value"
-                android:text="@string/rating_count"
-
-                />
-
-            <EditText
-                style="@style/topText.name"
-                android:text="@string/rating_label"
-                />
-        </LinearLayout>
-
-        <View
-            android:layout_width="@dimen/line_width"
-            android:layout_height="@dimen/line_height"
-            android:layout_gravity="center"
-            android:background="@color/white"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/spacing_small_8"
-            android:paddingBottom="@dimen/spacing_small_8">
-
-            <EditText
-                style="@style/topText.value"
-                android:text="@string/code_strings_count"
-                />
-
-            <EditText
-                style="@style/topText.name"
-                android:text="@string/code_strings_label"
-                />
-        </LinearLayout>
-
-        <View
-            android:layout_width="@dimen/line_width"
-            android:layout_height="@dimen/line_height"
-            android:layout_gravity="center"
-            android:background="@color/white"/>
-
-        <LinearLayout
-            android:paddingTop="@dimen/spacing_small_8"
-            android:paddingBottom="@dimen/spacing_small_8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <EditText
-                style="@style/topText.value"
-                android:text="@string/projects_count"
-
-                />
-
-            <EditText
-                style="@style/topText.name"
-                android:text="@string/projects_label"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
 
 
     <LinearLayout
