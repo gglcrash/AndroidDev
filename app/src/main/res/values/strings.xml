@@ -29,4 +29,5 @@
     <string name="enter_text_upper">ВОЙТИ</string>
     <string name="password_text">Пароль</string>
     <string name="forget_password_text">Забыли пароль?</string>
+    <string name="try_again">Попробуйте еще раз!</string>
 </resources>

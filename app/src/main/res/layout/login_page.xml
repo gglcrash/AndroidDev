@@ -68,7 +68,7 @@
                     >
 
                     <EditText
-                        android:id="@+id/login_email_edittext"
+                        android:id="@+id/login_email"
                         style="@style/maintext.login"
                         android:enabled="true"
                         android:hint="@string/emailName"
@@ -85,7 +85,7 @@
                     >
 
                     <EditText
-                        android:id="@+id/password_edittext"
+                        android:id="@+id/login_password"
                         style="@style/maintext.login"
                         android:enabled="true"
                         android:hint="@string/password_text"
@@ -106,6 +106,7 @@
                     android:theme="@style/AppTheme.Button.Red"/>
 
                 <TextView
+                    android:id="@+id/lost_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
