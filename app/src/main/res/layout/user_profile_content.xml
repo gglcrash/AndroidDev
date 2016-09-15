@@ -29,7 +29,7 @@
 
                 <EditText
                     android:id="@+id/mobile_edittext"
-                    style="@style/maintext"
+                    style="@style/maintext.profile"
                     android:hint="Мобильный телефон"
                     android:inputType="phone"
                     android:text="89191894428"
@@ -68,7 +68,7 @@
 
                 <EditText
                     android:id="@+id/email_edittext"
-                    style="@style/maintext"
+                    style="@style/maintext.profile"
                     android:hint="@string/emailName"
                     android:inputType="textEmailAddress"
                     android:text="@string/email"
@@ -106,7 +106,7 @@
 
                 <EditText
                     android:id="@+id/profile_edittext"
-                    style="@style/maintext"
+                    style="@style/maintext.profile"
                     android:hint="@string/profileName"
                     android:inputType="textWebEditText"
                     android:text="@string/profileLink"
@@ -144,7 +144,7 @@
 
                 <EditText
                     android:id="@+id/repo_edittext"
-                    style="@style/maintext"
+                    style="@style/maintext.profile"
                     android:hint="@string/repoName"
                     android:inputType="textWebEditText"
                     android:text="@string/repoLink"
@@ -182,7 +182,7 @@
 
                 <EditText
                     android:id="@+id/info_edittext"
-                    style="@style/maintext"
+                    style="@style/maintext.profile"
                     android:hint="@string/infoName"
                     android:text="@string/info"
                     />

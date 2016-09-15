@@ -12,7 +12,7 @@ public class UiHelper {
     public static int getStatusBarHeight(){
         int result = 0;
         int resourceId = mContext.getResources().getIdentifier(
-                "user_info_height","dimen","com.softdesign.devintensive");
+                "status_bar_height","dimen","android");
         if(resourceId>0){
             result = mContext.getResources().getDimensionPixelSize(resourceId);
         }

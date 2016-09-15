@@ -99,9 +99,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/spacing_small_8"
-                android:paddingBottom="@dimen/spacing_small_8">
+                android:layout_weight="1">
 
                 <EditText
                     style="@style/topText.value"
@@ -125,9 +123,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/spacing_small_8"
-                android:paddingBottom="@dimen/spacing_small_8">
+                android:orientation="vertical">
 
                 <EditText
                     style="@style/topText.value"
@@ -147,8 +143,6 @@
                 android:background="@color/white"/>
 
             <LinearLayout
-                android:paddingTop="@dimen/spacing_small_8"
-                android:paddingBottom="@dimen/spacing_small_8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

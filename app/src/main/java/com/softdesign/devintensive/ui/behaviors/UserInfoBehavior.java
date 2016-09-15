@@ -36,6 +36,7 @@ public class UserInfoBehavior<V extends LinearLayout> extends AppBarLayout.Scrol
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
 
+        int temp = dependency.getBottom();
         float currentFriction = UiHelper.currentFriction(
                 mMinAppbarHeight,mMaxAppbarHeight, dependency.getBottom());
         int currentHeight = UiHelper.lerp(
