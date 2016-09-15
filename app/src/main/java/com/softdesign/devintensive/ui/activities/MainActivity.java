@@ -299,7 +299,7 @@ public class MainActivity extends BaseActivity {
         if (mNavigationView.isShown()) {
             mNavigationDrawer.closeDrawer(Gravity.LEFT);
         } else {
-            super.onBackPressed();
+            moveTaskToBack(true);
         }
     }
 
